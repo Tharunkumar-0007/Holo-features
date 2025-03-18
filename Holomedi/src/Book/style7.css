@@ -1,0 +1,142 @@
+/* Global Styles */
+body {
+    font-family: 'Roboto', sans-serif; /* Use a modern font */
+    background-color: #f4f4f4; /* Light background */
+    color: #333; /* Dark text for better contrast */
+    text-align: center;
+    padding: 40px; /* Increased padding for better spacing */
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+/* Form Styles */
+form {
+    margin-bottom: 40px; /* Increased space below the form */
+}
+
+input {
+    padding: 12px 18px;
+    font-size: 16px; /* Larger input text */
+    width: 250px; /* Fixed width for inputs */
+    border: 2px solid #ddd; /* Light border */
+    border-radius: 8px;
+    margin-right: 20px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #55c2ff; /* Blue border on focus */
+}
+
+button {
+    padding: 12px 24px;
+    background-color: #55c2ff; /* Bright button */
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a1d6; /* Darker shade on hover */
+}
+
+/* Suggested Books Section */
+h2 {
+    font-size: 2em;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+/* Grid Layout for Books */
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.book-item {
+    text-align: center;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book-item:hover {
+    transform: translateY(-10px); /* Slight lift effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.book-item a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.book-item img {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.book-item img:hover {
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+.book-item h3 {
+    font-size: 1.2em;
+    margin: 15px 0 10px 0;
+    font-weight: 500;
+}
+
+.book-item p {
+    font-size: 1em;
+    color: #666;
+    margin: 5px 0;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .book-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust grid for smaller screens */
+    }
+
+    input {
+        width: 200px;
+    }
+
+    button {
+        padding: 10px 20px;
+    }
+
+    .book-item img {
+        max-width: 180px;
+        max-height: 270px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    
+    .book-item {
+        padding: 15px;
+    }
+
+    input, button {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .book-item img {
+        max-width: 160px;
+        max-height: 240px;
+    }
+}

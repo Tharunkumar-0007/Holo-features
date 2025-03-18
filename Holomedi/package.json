@@ -1,0 +1,45 @@
+{
+  "name": "holomedi",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "keywords": [],
+  "author": "Holoware",
+  "license": "ISC",
+  "description": "Holomedi",
+  "devDependencies": {
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8"
+  },
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "dotenv": "^16.4.7",
+    "electron-squirrel-startup": "^1.0.1",
+    "ffmpeg-static": "^5.2.0"
+  },
+  "build": {
+    "appId": "com.example.yourapp",
+    "productName": "Holomedi",
+    "icon": "./src/assets/images/holoico.ico",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "./src/assets/images/holoico.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Holomedi"
+    }
+  }
+}

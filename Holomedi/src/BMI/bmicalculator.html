@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Chart</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 2.5rem;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            height: 500px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chart-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        .needle {
+            position: absolute;
+            width: 8px;
+            height: 150px;
+            background-color: #ff4b5c;
+            top: 45%;
+            left: 50%;
+            transform-origin: center bottom;
+            transform: rotate(0deg);
+            transition: transform 0.8s ease;
+        }
+
+        .bmi-container {
+            width: 100%;
+            max-width: 450px;
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            margin-bottom: 20px;
+            background: #ceaeeb8c;
+            color: #fff;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: #ff4b5c;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #e03a4f;
+        }
+
+        .bmi-output {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>BMI Calculator</h1>
+    <div class="container">
+        <!-- Chart Container -->
+        <div class="chart-container">
+            <img src="../assets/images/bmi_chart.png" alt="BMI Chart">
+            <div class="needle"></div>
+        </div>
+
+        <!-- BMI Input Form -->
+        <div class="bmi-container">
+            <label for="weight">Weight (kg)</label>
+            <input type="number" id="weight" placeholder="Enter weight">
+
+            <label for="height">Height</label>
+            <div style="display: flex; gap: 10px;">
+                <input type="number" id="height" placeholder="Enter height">
+                <select id="height-unit">
+                    <option value="cm">cm</option>
+                    <option value="inches">inches</option>
+                </select>
+            </div>
+
+            <label for="age">Age</label>
+            <input type="number" id="age" placeholder="Enter age">
+
+            <label for="gender">Gender</label>
+            <select id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+
+            <button onclick="calculateBMI()">Calculate BMI</button>
+
+            <div class="bmi-output" id="bmi-output"></div>
+        </div>
+    </div>
+
+    <script>
+        function calculateBMI() {
+            const weight = parseFloat(document.getElementById('weight').value);
+            let height = parseFloat(document.getElementById('height').value);
+            const heightUnit = document.getElementById('height-unit').value;
+            const needle = document.querySelector('.needle');
+            const bmiOutput = document.getElementById('bmi-output');
+
+            if (heightUnit === 'inches') {
+                height *= 2.54; // Convert inches to cm
+            }
+
+            if (!weight || !height || weight <= 0 || height <= 0) {
+                bmiOutput.textContent = 'Please enter valid weight and height.';
+                return;
+            }
+
+            const bmi = (weight / (height * height) * 10000).toFixed(1);
+
+            let angle = 0;
+            let message = '';
+            if (bmi < 18.5) {
+                angle = -60;
+                message = 'Underweight';
+            } else if (bmi < 24) {
+                angle = -30;
+                message = 'Normal';
+            } else if (bmi < 30) {
+                angle = 0;
+                message = 'Overweight';
+            } else if (bmi < 35) {
+                angle = 30;
+                message = 'Obese';
+            } else {
+                angle = 60;
+                message = 'Extremely Obese';
+            }
+
+            needle.style.transform = `rotate(${angle}deg)`;
+            bmiOutput.textContent = `Your BMI is ${bmi} (${message}).`;
+        }
+    </script>
+</body>
+</html>

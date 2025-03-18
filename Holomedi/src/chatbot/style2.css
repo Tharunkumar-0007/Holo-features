@@ -1,0 +1,680 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('./assets/fonts/Poppins-SemiBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Poppins';
+    src: url('./assets/fonts/Poppins-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Poppins';
+    src: url('./assets/fonts/Poppins-Thin.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @keyframes floatingEffect {
+    0% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-10px) scale(1.05);
+    }
+    100% {
+      transform: translateY(0) scale(1);
+    }
+  }
+   
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #D4E4F0; 
+    background-image: url('../assets/images/polygon1.png'); 
+    background-size: 70% auto; 
+    background-position: left top; 
+    background-repeat: no-repeat;
+    font-family: 'Poppins', sans-serif; 
+    height: 100vh;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    position: relative; 
+    overflow: hidden; 
+    padding: 0 20px; 
+  }
+  
+
+  .container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  
+
+  .logo {
+    position: absolute;
+    top: 3%;
+    left: 1vw; 
+    width: 13vw;
+    height: auto;
+  }
+  
+
+  .title {
+    position: absolute;
+    top: 2vw; 
+    right: 5vw;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2vw; 
+    font-weight: semi-bold; 
+    text-decoration: underline; 
+  }
+  
+
+  .polygon2 {
+    position: fixed; 
+    bottom: 0.1vw; 
+    right: 0.1vw; 
+    width: 25vw; 
+    height: auto; 
+  }
+  
+  .robot-image {
+    animation: floatingEffect 3s ease-in-out infinite;
+    transition: transform 0.3s ease;
+    position: fixed; 
+    bottom: 3.6vw; 
+    right: 4vw; 
+    width: 27vw; 
+    height: 70vh; 
+  }
+
+
+  .robot-image:hover {
+    transform: scale(1.1);
+  }
+
+  h1.centered-title {
+    position: absolute;
+    font-family: 'Poppins', sans-serif; 
+    font-size: 8vw; 
+    font-weight: bold;
+    color: #21969A; 
+    text-align: center; 
+    top: 20%; 
+    left: 3%; 
+  }
+
+  h1.subtitle {
+    position: absolute;   
+    font-family: 'Poppins', sans-serif; 
+    font-size: 7.5vw; 
+    color: #000000; 
+    text-align: center;
+    top: 37%; 
+    left: 2.5%; 
+  
+  }
+
+  .description {
+    position: absolute; 
+    top: 58%; 
+    left: 3%; 
+    width: 40%; 
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3vw; 
+    color: #897d7d;
+    line-height: 1.6;
+    text-align: left; 
+    font-weight: 600; 
+    margin: 0 auto;
+    padding: 0 20px; 
+  }
+
+  .button-container {
+    position: absolute; 
+    top: 77%; 
+    right: 17%;
+    width: 100%; 
+    justify-content: space-between; 
+    gap: 25px; 
+    display: flex-start; ;
+    text-align: center;
+}
+
+.button-container .button {
+    background-color: #36D2A6; 
+    color: #F3FCFC; 
+    font-family: 'Poppins', sans-serif; 
+    font-size: 1.2vw; 
+    border: none;
+    padding: 8px 16px; 
+    border-radius: 7px; 
+    cursor: pointer;
+    transition: all 0.3s ease; 
+    width: 18%;
+    min-width: 150px; 
+    text-align: center;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.button-container .button:hover {
+    background-color: #2A9D8F; 
+    transform: translateY(-3px); 
+}
+
+  a {
+    text-decoration: none;
+  }
+
+.footer {
+  position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   color: #958c8c;
+   text-align: center;
+   font-family: 'Poppins', sans-serif; 
+   font-weight: bold; 
+}
+
+.footer a {
+  color: #00bcd4;          
+  text-decoration: none;   
+}
+
+.footer a:hover {
+  text-decoration: underline; 
+}
+
+.footer p {
+  margin: 0;              
+  font-size: 12px;          
+}
+
+
+.info-box {
+    width: 30vw; 
+    height: 81vh;  
+    padding: 3vh;  
+    margin-left: 42vw; 
+    background-color: #F2EDED;  
+    border-radius: 40px;  
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);  
+    border: 1px solid #ddd; 
+   position: absolute;
+   top: 12%;
+  }
+
+  .profile-section {
+    display: flex; 
+    align-items: center; 
+    margin-bottom: 1vh;  
+    margin-top: 0; 
+  }
+  
+  .profile-pic {
+    width: 2.5vw;  
+    height: 2.5vw; 
+    border-radius: 50%; 
+    overflow: hidden;
+    border: 0.3vh solid black; 
+    margin-right: 1vw;  
+  }
+  
+  .profile-pic img {
+    width: 100%;  
+    height: 100%;
+    object-fit: cover; 
+  }
+  
+  .profile-name {
+    font-size: 1.3vw; 
+    font-weight: bold;
+    color: #333;
+  }
+
+  .chat-divider {
+    width: 100%;
+    border: 1px solid #000;
+    margin-top: 1vm;
+  }
+  
+  .bottom-section {
+    display: flex;  
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 2%;
+  }
+  
+  .message-input {
+    flex: 1; 
+    padding: 1vh;
+    font-size: 1.3vw;  
+    border: 1.5px solid #000000;  
+    background-color: #F2EDED;
+    border-radius: 3vh; 
+    margin-right: 1vw; 
+   
+  }
+  
+  .mic-icon, .send-icon {
+    width: 2.5vw; 
+    height: 2.5vw;  
+    border-radius: 50%;  
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.3vh solid black;  
+  }
+
+  .send-icon {
+    margin-left: 1vw;  
+   cursor: pointer;
+  }
+  .send-icon img {
+    margin-left: 0.3vw;  
+
+  }
+
+  .mic-icon img, .send-icon img {
+    width: 80%;  
+    height: 80%;
+    object-fit: cover;  
+  }
+  
+  .separator {
+    width: 100%;  
+    height: 0.2vh;  
+    background-color: #000000; 
+    margin: 2vh 0; 
+  
+}
+
+.messages-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow-y: auto;
+  padding: 8px;
+  margin-bottom: 2vh;
+  height: 60vh;
+  }
+  
+  .message {
+    display: inline-block;
+    border-radius: 20px;
+    padding: 5px;
+    margin-bottom: 1.5vh;
+    line-height: 1.4;
+    word-wrap: break-word;
+    transition: all 0.3s ease;
+  }
+  
+  .user-message {
+    background-color: #21969A;
+    color: white;
+    text-align: right;
+    border: 1.5px solid #000000;
+    border-radius: 20px;
+    max-width: 70%;
+    align-self: flex-end;
+    padding: 10px;
+    word-wrap: break-word;
+}
+
+
+.chatbot-message {
+  background-color: #F2EDED;
+  color: #333;
+  text-align: left;
+  border: 1.5px solid #000000;
+  border-radius: 20px;
+  max-width: 95%;
+  align-self: flex-start; 
+  padding: 1vw;
+  font-size: 16px;
+  word-wrap: break-word;
+}
+
+.message[data-length="short"] {
+  padding: 5px 5px;
+  max-width: 60%; 
+  border-radius: 15px; 
+}
+
+.message[data-length="long"] {
+  padding: 5px 10px; 
+  max-width: 80%; 
+  border-radius: 30px; 
+}
+
+.mic-status {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  display: none; 
+}
+/* Style for the typing message */
+.typing-message {
+  font-style: italic;
+  color: #aaa;
+  padding: 10px;
+  margin: 10px 0;
+  text-align: left;
+}
+
+nav {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.menu-icon {
+  display: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.line {
+  width: 30px;
+  height: 4px;
+  background-color: black;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.nav-links {
+  display: none;
+  flex-direction: column;
+  background-color: black;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.nav-links a:hover {
+  color: #ddd;
+}
+
+.normal-links {
+  display: flex;
+  flex-direction: row;
+  margin-top: 4%;
+  font-weight: bold;
+  
+}
+
+.normal-links a {
+  color: black;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 18px;
+}
+
+.normal-links a:hover {
+  color: #333;
+}
+
+/* For screens 480px and below (Mobile devices) */
+@media only screen and (max-width: 480px) {
+
+  .logo {
+    width: 33vw;
+    top: 5vw;
+  }
+
+  body {
+    font-size: 12px;
+    padding: 5px;
+    background-size: 100% auto; 
+  }
+
+  .profile-pic {
+    width: 8.5vw;  
+    height: 8.5vw;  
+  }
+
+  .profile-name {
+    font-size: 4.3vw; 
+  }
+  .container {
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+
+  .info-box {
+    width: 90%; 
+    height: auto;
+    margin: 10px auto;
+    top: 30%;
+    left: 5%;
+  }
+
+  .robot-image {
+    width: 30vw;
+    bottom: 5vh;
+    right: 5vw;
+    display: none;
+  }
+
+  .title {
+    font-size: 5vw;
+    text-align: center;
+    right: 2%;
+  }
+
+  h1.centered-title {
+    font-size: 9vw;
+    top: 10%;
+    left: 5%;
+  }
+
+  h1.subtitle {
+    font-size: 9vw;
+    top: 10%;
+    left: 50%;
+  }
+
+  .description {
+    font-size: 3vw;
+    width: 98%;
+    padding: 10px;
+    top: 16%;
+  }
+
+  .button-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .button-container .button {
+    font-size: 3vw;
+    padding: 10px;
+    min-width: 100px;
+  }
+
+  .messages-container {
+    height: 40vh;
+    gap: 8px;
+  }
+
+  .message-input {
+    font-size: 3vw;
+    padding: 8px;
+  }
+
+  .mic-icon, .send-icon {
+    width: 8vw;
+    height: 8vw;
+  }
+  .menu-icon {
+    display: block; /* Show the hamburger icon on mobile */
+  }
+
+  .normal-links {
+    display: none; /* Hide regular nav links on mobile */
+  }
+
+  .nav-links {
+    display: none; /* Use flexbox for column layout */
+    flex-direction: column; /* Arrange links in a column */
+    width: 380%; /* Adjust width to fit within the screen, leave padding */
+    margin: 0 auto; /* Center the nav box horizontally */
+    background-color: #D4E4F0; /* Background for the nav container */
+    text-align: center;
+    border-radius: 10px; /* Rounded corners for the box */
+    padding: 15px; /* Add some spacing inside the box */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add shadow for box effect */
+  }
+
+  .nav-links a {
+    padding: 10px 15px; /* Add spacing for links */
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    background-color: #21969a; /* Background for each link */
+    margin: 5px 0; /* Add spacing between links */
+    border-radius: 5px; /* Rounded corners for links */
+    text-align: center; /* Center align text */
+  }
+
+  .nav-links a:hover {
+    background-color: #444; /* Change background color on hover */
+    color: #ddd; /* Optional: Change text color on hover */
+  }
+
+}
+
+
+
+/* For screens 481px to 1024px (Tablets and small laptops) */
+@media only screen and (min-width: 481px) and (max-width: 1024px) {
+
+  .logo { 
+    width: 22vw;
+  }
+
+  body {
+    font-size: 14px;
+    padding: 10px;
+    background-size: 50% auto;
+  }
+
+  .mic-icon, .send-icon {
+    width: 5.5vw; 
+    height: 5.5vw;
+  }
+
+  .message-input{
+    padding: 1.5vh;
+  }
+
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info-box {
+    width: 65%; 
+    height: auto;
+    margin: 10px auto; 
+    top: 27%;
+    left: 5%;
+  }
+
+  .robot-image {
+    width: 25vw;
+    bottom: 5vw;
+    right: 8vw;
+    height: 60vh;
+  }
+
+  .title {
+    font-size: 4.5vw;
+  }
+
+  h1.centered-title {
+    font-size: 8vw;
+    top: 10%;
+    left: 5%;
+  }
+
+  h1.subtitle {
+    font-size: 8vw;
+    top: 10%;
+    left: 46%;
+  }
+
+  .description {
+    font-size: 2vw;
+    width: 88%;
+    padding: 10px;
+    top: 18%;
+    left: 5%;
+  }
+
+  .profile-pic {
+    width: 5.5vw; 
+    height: 5.5vw;
+  }
+
+  .profile-name {
+    font-size: 3.3vw; 
+  }
+
+  .button-container .button {
+    font-size: 1vw;
+    padding: 10px 20px;
+    min-width: 120px;
+  }
+
+  .messages-container {
+    height: 45vh;
+  }
+
+  .normal-links {
+    margin-top: 9%;
+    font-weight: bold;
+  }
+  .normal-links a {
+    margin-left: 20px;
+    font-size: 20px;
+  }
+}
+

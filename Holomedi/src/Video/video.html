@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Query</title>
+    <link rel="stylesheet" href="./style8.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <h1>Medical Query</h1>
+            <form id="search-form">
+                <input class="search-bar" type="text" id="query" placeholder="Search medical videos..." required>
+                <button class= "search-btn" type="submit">Search</button>
+            </form>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Results</h2>
+        <div id="video-results" class="video-results"></div>
+        <p id="error-message" class="error"></p>
+    </div>
+
+    <script>
+        document.getElementById('search-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const query = document.getElementById('query').value;
+        const resultsContainer = document.getElementById('video-results');
+        const errorMessage = document.getElementById('error-message');
+
+        resultsContainer.innerHTML = "";
+        errorMessage.textContent = "";
+
+        fetch('http://127.0.0.1:5000/video_search', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({ query: query })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                errorMessage.textContent = data.error;
+            } else {
+                data.videos.forEach(videoUrl => {
+                    const videoCard = document.createElement('div');
+                    videoCard.classList.add('video-card');
+
+                    videoCard.innerHTML = `
+                        <a href="${videoUrl}" target="_blank">
+                            <img src="https://img.youtube.com/vi/${videoUrl.split('v=')[1]}/0.jpg" alt="Video Thumbnail" class="video-thumbnail">
+                            <p class="video-title">${videoUrl}</p>
+                        </a>
+                    `;
+
+                    resultsContainer.appendChild(videoCard);
+                });
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+    </script>
+</body>
+</html>
+
+

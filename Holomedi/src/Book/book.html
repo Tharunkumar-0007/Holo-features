@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Suggestion App</title>
+    <link rel="stylesheet" href="style7.css">
+</head>
+<body>
+    <h1>Book Suggestion App</h1>
+    <form id="book-form">
+        <label for="genre">Enter Book name:</label>
+        <input type="text" id="genre" name="genre" required>
+        <button type="submit">Get Suggestions</button>
+    </form>
+
+    <div id="loading" style="display:none;">Loading...</div>
+
+    <div id="suggestions-container"></div>
+
+    <script>
+        document.getElementById('book-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Show loading indicator
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('suggestions-container').innerHTML = '';
+
+            // Get the genre input value
+            const genre = document.getElementById('genre').value;
+
+            // Make the fetch request to the backend
+            fetch('http://127.0.0.1:5000/suggest', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ genre: genre })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Hide loading indicator
+                document.getElementById('loading').style.display = 'none';
+
+                // Check if books are found and display them
+                if (data.suggested_books.length > 0) {
+                    let suggestionsHTML = '<h2>Suggested Books:</h2><div class="book-grid">';
+                    data.suggested_books.forEach(book => {
+                        suggestionsHTML += `
+                            <div class="book-item">
+                                <a href="${book.infoLink}" target="_blank">
+                                    <img src="${book.thumbnail || 'https://via.placeholder.com/128x200?text=No+Cover'}" alt="${book.title} Cover">
+                                    <h3>${book.title}</h3>
+                                    <p>by ${book.authors.join(', ')}</p>
+                                </a>
+                            </div>
+                        `;
+                    });
+                    suggestionsHTML += '</div>';
+                    document.getElementById('suggestions-container').innerHTML = suggestionsHTML;
+                } else {
+                    document.getElementById('suggestions-container').innerHTML = `<p>${data.message}</p>`;
+                }
+            })
+            .catch(error => {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('suggestions-container').innerHTML = '<p>Error fetching data. Please try again later.</p>';
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>

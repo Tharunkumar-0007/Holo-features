@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eye Disease Detection</title>
+    <link rel="stylesheet" href="style6.css">
+</head>
+<body>
+    <h1>Eye Disease Detection</h1>
+    <form id="uploadForm">
+        <input type="file" id="fileInput" name="file" required>
+        <input type="submit" value="Upload and Predict">
+    </form>
+
+    <div id="predictionResult">
+        <!-- Prediction will be displayed here -->
+    </div>
+
+    <script>
+        const form = document.getElementById('uploadForm');
+        const fileInput = document.getElementById('fileInput');
+        const predictionResult = document.getElementById('predictionResult');
+
+        form.onsubmit = async (event) => {
+            event.preventDefault(); // Prevent form submission
+            
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+
+            try {
+                const response = await fetch('http://192.168.0.75:5000/eye', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+                if (result.prediction) {
+                    predictionResult.innerHTML = `
+                        <h2>Prediction: ${result.prediction}</h2>
+                        <p>Confidence: ${result.confidence}%</p>
+                    `;
+                } else {
+                    predictionResult.innerHTML = `<h2>${result.message}</h2>`;
+                }
+            } catch (error) {
+                predictionResult.innerHTML = '<h2>Error occurred during prediction</h2>';
+            }
+        };
+    </script>
+</body>
+</html>

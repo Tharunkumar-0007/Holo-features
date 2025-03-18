@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:;"> -->
+    <link rel="icon" type="image/x-icon" href="../assets/images/holologo.png" />
+    <title>HoloMedi</title>
+    <link rel="stylesheet" href="style4.css" />
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <div class="menu-icon" onclick="toggleMenu()">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+      </div>
+      <div class="nav-links" id="navLinks">
+          <a href="../HomeScreen.html" id="home">Home</a>
+          <a href="../chatbot/MedicalChatbot.html" id="chatbot">Medical Chatbot</a>
+          <a href="../skindisease/SkinDiagnosis.html" id="skinDiagnosis">Skin Diagnosis</a>
+          <a href="../xraydetection/XrayDetection.html" id="xrayDetection">X-ray Detection</a>
+      </div>
+      <div class="normal-links">
+          <a href="../HomeScreen.html" id="home">Home</a>
+          <a href="../chatbot/MedicalChatbot.html" id="chatbot">Medical Chatbot</a>
+          <a href="../skindisease/SkinDiagnosis.html" id="skinDiagnosis">Skin Diagnosis</a>
+          <a href="../xraydetection/XrayDetection.html" id="xrayDetection">X-ray Detection</a>
+      </div>
+    </nav>
+      <img src="../assets/images/holowareLogo.png" alt="Logo" class="logo" />
+      <img
+        src="../assets/images/xrayrobot.png"
+        alt="robot"
+        class="robot-image"
+      />
+
+   
+      <h1 class="centered-title">X-RAY</h1>
+      <h1 class="subtitle">ANALYSIS</h1>
+
+      <p class="description">
+        Our medical AI chatbot provides general information on conditions and
+        symptoms. It's not a substitute for professional advice. Consult a
+        qualified healthcare professional for diagnosis, treatment, and
+        personalized guidance.
+      </p>
+
+      <img
+        src="../assets/images/polygon2.png"
+        alt="Polygon2"
+        class="polygon2"
+      />
+
+      <div class="info-box" id="info-box">
+        <div class="nested-box">
+          <label for="file-input">
+            <img
+              src="../assets/images/imageupload.png"
+              alt="ImageUpload"
+              class="imageupload"
+              id="upload-icon"
+            />
+            <p id="upload-text">Upload an Image</p>
+            <input type="file" id="file-input" />
+
+          </label>
+
+
+          <div id="image-preview" class="image-preview"></div>
+          <div id="disease-result" class="disease-result"></div>
+        </div>
+        <div class="separator"></div>
+        <form class="bottom-section" id="message-form">
+          <input
+            type="text"
+            class="message-input"
+            placeholder="Add note..."
+            id="message-input"
+          />
+
+          <div class="send-icon" id="send-icon">
+            <img src="../assets/images/send.png" alt="Send" />
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer">
+        <p>
+          © Powered by <a href="https://holoware.co/">Holoware&reg;</a> All
+          rights reserved
+        </p>
+      </div>
+    </footer>
+
+    <script type="module" src="../xraydetection/xray.js"></script>
+  </body>
+</html>

@@ -1,0 +1,126 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <link rel="icon" type="image/x-icon" href="../assets/images/holologo.png">
+  <title>HoloMedi</title>
+  <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <div class="menu-icon" onclick="toggleMenu()">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+    <div class="nav-links" id="navLinks">
+        <a href="../HomeScreen.html" id="home">Home</a>
+        <a href="../chatbot/MedicalChatbot.html" id="chatbot">Medical Chatbot</a>
+        <a href="../skindisease/SkinDiagnosis.html" id="skinDiagnosis">Skin Diagnosis</a>
+        <a href="../xraydetection/XrayDetection.html" id="xrayDetection">X-ray Detection</a>
+    </div>
+    <div class="normal-links">
+        <a href="../HomeScreen.html" id="home">Home</a>
+        <a href="../chatbot/MedicalChatbot.html" id="chatbot">Medical Chatbot</a>
+        <a href="../skindisease/SkinDiagnosis.html" id="skinDiagnosis">Skin Diagnosis</a>
+        <a href="../xraydetection/XrayDetection.html" id="xrayDetection">X-ray Detection</a>
+    </div>
+  </nav>
+    <img src="../assets/images/holowareLogo.png" alt="Logo" class="logo">
+    <img src="../assets/images/skinrobot.png" alt="robot" class="robot-image">
+
+   
+    <h1 class="centered-title">SKIN</h1>
+    <h1 class="subtitle">DIAGNOSE</h1>
+
+    <p class="description">
+      Our medical AI chatbot provides general information on conditions and symptoms. It's not a substitute for professional advice. Consult a qualified healthcare professional for diagnosis, treatment, and personalized guidance.
+    </p>
+
+    <img src="../assets/images/polygon2.png" alt="Polygon2" class="polygon2">
+
+    <div class="info-box" id="info-box">
+      <div class="nested-box">
+        <div class="uploadtext" id="upload-container">
+          <label for="file-input">
+            <img src="../assets/images/imageupload.png" alt="ImageUpload" class="imageupload" id="upload-icon">
+            <input type="file" id="file-input" />
+          </label>
+          <p id="upload-text">Upload file from your computer</p>
+          
+          <div id="image-preview" class="image-preview"></div>
+          <div id="disease-result" class="disease-result"></div>
+
+          <div class="or" id="or-container">
+            <p id="or-text">or</p>
+          </div>
+           
+          <div class="capture" id="capture-container">
+            <img src="../assets/images/camera.png" alt="camera" class="camera" />
+            <p id="capture-text">Capture Image</p>
+        </div>
+
+        </div>
+      </div>
+      <div>
+        <button class="upload-button">SUBMIT</button>
+      </div>
+    </div>
+
+    <div class="chat-box" id="chat-box" >
+      <div class="profile-section">
+        <div class="profile-pic">
+          <div class="cancel-chatbox-icon" id="cancel-chatbox-icon">&times;</div>
+
+          <img src="../assets/images/profilepic.png" alt="Profile Picture">
+
+        </div>
+        <p class="profile-name">Medical Assistant...</p>
+    </div>
+    <hr class="chat-divider">
+  
+    <div class="chat-listing" id="chat-listing">
+    
+    </div>
+
+    <div class="messages-container" id="messages-container">
+     
+    </div>
+
+    <div class="separator"></div>
+
+    <form class="bottom-section" id="message-form">
+      <input type="text" class="message-input" placeholder="Type a message..." id="message-input">
+      <div class="mic-icon">
+        <img src="../assets/images/mic.png" alt="Mic">
+        
+      </div>
+      <div class="send-icon" id="send-icon">
+        <img src="../assets/images/send.png" alt="Send">
+      </div>
+    </form>
+  </div>
+  </div>
+
+  <div id="camera-container" class="camera-container">
+    <video id="video" width="300" height="300" autoplay></video>
+    <button id="capture-btn">Capture</button>
+    <canvas id="canvas"></canvas>
+  </div>
+
+  <footer>
+    <div class="footer">
+      <p>© Powered by <a href="https://holoware.co/">Holoware&reg;</a> All rights reserved</p>
+    </div>
+  </footer>
+
+  <script  type = "module"  src="../skindisease/skin.js"></script>
+</body>
+</html>
+

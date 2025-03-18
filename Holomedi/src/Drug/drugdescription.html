@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health and Drug Finder</title>
+    <link rel="stylesheet" href="style4.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Drug and Medicine Finder Section -->
+        <header>
+            <h1>🔍 Drug and Medicine Finder</h1>
+            <p>Search for drug information in seconds!</p>
+        </header>
+        <section class="search-section">
+            <form id="drug-form">
+                <label for="drug_name">Enter Drug Name:</label>
+                <input 
+                    type="text" 
+                    id="drug_name" 
+                    name="drug_name" 
+                    placeholder="e.g., Aspirin, Paracetamol" 
+                    required 
+                >
+                <button type="submit">Search</button>
+            </form>
+            <div id="result" class="result-box"></div>
+        </section>
+    </div>
+
+    <script>
+        // Drug Search Functionality
+        document.getElementById("drug-form").addEventListener("submit", async (event) => {
+            event.preventDefault();
+            const drugName = document.getElementById("drug_name").value;
+            const resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "<div class='loading'>Searching...</div>";
+    
+            const response = await fetch("http://127.0.0.1:5000/search", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams({ drug_name: drugName })
+            });
+    
+            if (response.ok) {
+                const data = await response.json();
+                resultDiv.innerHTML = ` 
+                    <div class="result-card">
+                        <h2>Drug Found:</h2>
+                        <p><strong>Description:</strong> ${data.description}</p>
+                        <p><strong>URL:</strong> <a href="${data.url}" target="_blank">${data.url}</a></p>
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = `
+                    <div class="result-card error">
+                        <p>❌ Drug not found. Please try again.</p>
+                    </div>
+                `;
+            }
+        });
+    </script>    
+</body>
+</html>

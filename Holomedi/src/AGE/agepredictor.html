@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Age Predictor</title>
+    <link rel="stylesheet" href="style5.css">
+    <script src="script5.js" defer></script>
+</head>
+<body>
+    <div class="header">
+        <h2>Mental AGE Predictor</h2>
+    </div>
+
+    <div class="quiz-container">
+        <h1>Mental Age Predictor</h1>
+        
+        <!-- Question content dynamically inserted here -->
+        <div id="question-box" class="question-box">
+            <!-- Quiz Questions will go here -->
+        </div>
+        
+        <!-- Result Box (hidden initially) -->
+        <div id="result-box" class="result-box hidden">
+            <h2>Your Mental Age</h2>
+            <p>Your mental age is: <strong id="mental-age-result">{{ mental_age }}</strong> years!</p>
+            <a href="/">Take the quiz again</a>
+        </div>
+    </div>
+</body>
+</html>

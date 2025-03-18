@@ -1,0 +1,620 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('./assets/fonts/Poppins-SemiBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Poppins';
+    src: url('./assets/fonts/Poppins-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Poppins';
+    src: url('./assets/fonts/Poppins-Thin.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @keyframes floatingEffect {
+    0% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-10px) scale(1.05);
+    }
+    100% {
+      transform: translateY(0) scale(1);
+    }
+  }
+   
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #D4E4F0; 
+    background-image: url('../assets/images/polygon1.png'); 
+    background-size: 70% auto; 
+    background-position: left top; 
+    background-repeat: no-repeat;
+    font-family: 'Poppins', sans-serif; 
+    height: 100vh;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    position: relative; 
+    overflow: hidden; 
+    padding: 0 20px; 
+  }
+  
+
+  .container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  
+
+  .logo {
+    position: absolute;
+    top: 3%;
+    left: 1vw; 
+    width: 13vw;
+    height: auto;
+  }
+  
+
+  .title {
+    position: absolute;
+    top: 2vw; 
+    right: 3vw;
+    font-family: 'Poppins', sans-serif;
+    font-size: 2vw; 
+    font-weight: semi-bold; 
+    text-decoration: underline; 
+  }
+  
+
+  .polygon2 {
+    position: fixed; 
+    bottom: 0.1vw; 
+    right: 0.1vw; 
+    width: 25vw; 
+    height: auto; 
+  }
+  
+  .robot-image {
+    animation: floatingEffect 3s ease-in-out infinite;
+    transition: transform 0.3s ease;
+    position: fixed; 
+    bottom: 5.6vw; 
+    right: 1vw; 
+    width: 32vw; 
+    height: 70vh;
+  }
+
+
+  .robot-image:hover {
+    transform: scale(1.1);
+  }
+
+  h1.centered-title {
+    position: absolute;
+    font-family: 'Poppins', sans-serif; 
+    font-size:12vw; 
+    font-weight: bold;
+    color: #21969A; 
+    text-align: center; 
+    top: 20%; 
+    margin-left: 6%; 
+  }
+
+  h1.subtitle {
+    position: absolute;
+    font-family: 'Poppins', sans-serif; 
+    font-size: 7vw; 
+    color: #000000; 
+    text-align: center;
+    top: 45%; 
+    margin-left: 5%;  
+  }
+
+  #file-input{
+    display: none;
+  }
+  .description {
+    position: absolute; 
+    top: 65%; 
+    margin-left: 6%; 
+    width: 37%; 
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3vw; 
+    color: #897d7d;
+    line-height: 1.6;
+    text-align: left; 
+    font-weight: 600; 
+  }
+
+  .nested-box {
+    border: 2px solid black; 
+    padding: 10px;           
+    margin: 10px;   
+    border-radius: 40px;    
+    height: 70%;  
+    margin-top:4%    
+  }
+#upload-icon{
+  margin-top: 2px;
+  width:70%;
+  margin-left: 37px;
+ }
+
+  .nested-box img {
+    width: 70%;
+    border-radius: 20px;
+    margin-left: 35%;
+  }
+
+  .nested-box p {
+    width: 110%;
+    margin-left: -13%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+  }
+  #upload-text {
+    width: 100%;
+    margin-left: 25%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+  }
+  .uploadtext {
+    width: 100%;
+    border-radius: 20px;
+    margin-left: 3%;
+   text-align: center;
+   
+  }
+
+  #newupload-text{
+    width: 80%;
+    border-radius: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 22       px;
+    margin-left: 6px;
+    position: relative; 
+    left: 0; 
+    text-align: left;
+  }
+    
+  
+  .preview-container {
+    position: relative;
+    display: block;
+    width: 200%;
+    right: 45%;
+    top: 20%;
+  }
+  
+   
+  .cancel-icon {
+    position: absolute;
+    bottom: 87%;
+    right: 37%; 
+    background-color:#ffff; 
+    color: #21969A;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+    z-index: 10; 
+  }
+  
+
+  .cancel-icon:hover {
+    background-color: #21969A;
+    color: #fff;
+    transform: scale(1.1);
+  }
+
+  .cancel-chatbox-icon {
+    position: absolute;
+    top: 7px;
+    right: 22px;
+    font-size: 40px;
+    cursor: pointer;
+    color: #000000; 
+    border-radius: 50%;
+    padding: 5px;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .cancel-chatbox-icon:hover {
+    transform: scale(1.2); 
+  }
+  
+  .disease-result{
+    margin-top: 5%;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    margin-left: 50px;
+    font-size: 15px
+  }
+  
+  .hidden {
+    display: none !important; 
+  }
+  
+
+ #image-preview img {
+  max-width: 25%; 
+  max-height: 15%;
+  border-radius: 10px;
+  border: 1.5px solid #000000;
+  display: block;
+  position: relative; 
+  left: 35%;
+  margin-left: 0;
+  } 
+  .uploaded-image {
+  
+    border-radius: 10px;
+    border: 1.5px solid #000000;
+    object-fit: cover;
+
+  }
+ 
+  a {
+    text-decoration: none;
+  }
+
+.footer {
+  position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   color: #958c8c;
+   text-align: center;
+   font-family: 'Poppins', sans-serif; 
+   font-weight: bold; 
+}
+
+.footer a {
+  color: #00bcd4;          
+  text-decoration: none;   
+}
+
+.footer a:hover {
+  text-decoration: underline; 
+}
+
+.footer p {
+  margin: 0;              
+  font-size: 12px;          
+}
+
+
+.info-box {
+    width: 25vw;
+    height: 65vh;
+    padding: 2vh;
+    margin-left: 46vw;
+    background-color: #F2EDED;
+    border-radius: 40px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    position: absolute;
+    top: 18%;
+  }
+
+  
+
+  .bottom-section {
+    display: flex;  
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 2%;
+  }
+  
+  .message-input {
+    flex: 1; 
+    padding: 1.2vh;
+    font-size: 1.3vw;  
+    border: 2px solid #000000;  
+    background-color: #F2EDED;
+    border-radius: 3vh; 
+    margin-right: 1vw; 
+   
+  }
+  
+  .send-icon {
+    width:40px;  
+    height:40px;  
+    border-radius: 50%;  
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;  
+  }
+
+ 
+  .send-icon img {
+    width: 70%;  
+    height: 70%;
+    object-fit: cover; 
+    margin-left: 8.5px;
+    margin-top: 5px;
+  }
+  
+  .separator {
+    width: 100%;  
+    height: 0.2vh;  
+    background-color: #000000;    
+    margin-top: 10%;
+    margin-right: 10%;
+    margin-bottom: 7%;
+}
+.loading-indicator {
+  margin-left: 26%;
+  margin-top: 10%;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+nav {
+  position: fixed;
+  top: 10px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.menu-icon {
+  display: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.line {
+  width: 30px;
+  height: 4px;
+  background-color: black;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.nav-links {
+  display: none;
+  flex-direction: column;
+  background-color: black;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.nav-links a:hover {
+  color: #ddd;
+}
+
+.normal-links {
+  display: flex;
+  flex-direction: row;
+  margin-top: 4%;
+  font-weight: bold;
+}
+
+.normal-links a {
+  color: black;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 18px;
+}
+
+.normal-links a:hover {
+  color: #333;
+}
+
+
+@media only screen and (max-width: 480px) { 
+  body {
+      flex-direction: column;
+      background-size: cover;
+      padding: 10px;
+  }
+
+  .logo {
+      top: 4vw;
+      left: 2%;
+      width: 34vw;
+  }
+
+  .title {
+      font-size: 6vw;
+      top: 2%;
+      right: 3%;
+  }
+
+  h1.centered-title {
+      font-size: 11vw;
+      top: 10%;
+      margin-left: 2%;
+  }
+
+  h1.subtitle {
+      font-size: 11vw;
+      top: 10%;
+      margin-left: 40%;
+  }
+
+  .description {
+      font-size: 3.3vw;
+      width: 96%;
+      top: 18%;
+      margin-left: 5%;
+  }
+
+  .info-box {
+      width: 90%;
+      height: 60vh;
+      margin-left: 5%;
+      top: 33%;
+  }
+
+  .message-input {
+      font-size: 4vw;
+  }
+
+  .send-icon {
+      width: 40px;  
+      height: 40px;
+  }
+
+  .robot-image{
+    display: none;
+  }
+  #upload-icon{
+    margin-top: 2px;
+    width:70%;
+    margin-left: 38px;
+   }
+   #upload-text {
+    width: 100%;
+    border-radius: 20px;
+    margin-left: 18%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    margin-left: 17vw;
+  }
+  .nested-box p {
+    margin-left: 0%
+  }
+
+  .menu-icon {
+    display: block; /* Show the hamburger icon on mobile */
+  }
+
+  .normal-links {
+    display: none; /* Hide regular nav links on mobile */
+  }
+
+  .nav-links {
+    display: none; /* Use flexbox for column layout */
+    flex-direction: column; /* Arrange links in a column */
+    width: 380%; /* Adjust width to fit within the screen, leave padding */
+    margin: 0 auto; /* Center the nav box horizontally */
+    background-color: #D4E4F0; /* Background for the nav container */
+    text-align: center;
+    border-radius: 10px; /* Rounded corners for the box */
+    padding: 15px; /* Add some spacing inside the box */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add shadow for box effect */
+  }
+
+  .nav-links a {
+    padding: 10px 15px; /* Add spacing for links */
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    background-color: #21969a; /* Background for each link */
+    margin: 5px 0; /* Add spacing between links */
+    border-radius: 5px; /* Rounded corners for links */
+    text-align: center; /* Center align text */
+  }
+
+  .nav-links a:hover {
+    background-color: #444; /* Change background color on hover */
+    color: #ddd; /* Optional: Change text color on hover */
+  }
+
+}
+
+@media only screen and (min-width: 481px) and (max-width: 1024px) { /* Tablet View */
+  .logo {
+      top: 3%;
+      left: 2%;
+      width: 26%;
+  }
+
+  .title {
+      font-size: 4vw;
+      top: 3%;
+      right: 3%;
+  }
+
+  h1.centered-title {
+      font-size: 10vw;
+      top: 10%;
+  }
+
+  h1.subtitle {
+      font-size: 10vw;
+      top: 10%;
+      left: 39%;
+  }
+
+  .description {
+      font-size: 2.5vw;
+      width: 88%;
+      margin-left: 5%;
+      top: 20%;
+  }
+
+  #upload-icon{
+    margin-left: 64px;
+  }
+
+  #upload-text{
+    font-size: 22px;
+  }
+
+  .info-box {
+      width: 64%;
+      height: 55vh;
+      margin-left: 3%;
+      top: 36%;
+      /* display: none; */
+  }
+
+  .message-input {
+      font-size: 1.5vw;
+  }
+
+  .send-icon {
+      width: 50px;
+      height: 50px;
+  }
+  .normal-links {
+    margin-top: 6%;
+    font-weight: bold;
+  }
+  .normal-links a {
+    margin-left: 20px;
+    font-size: 18px;
+  }
+}
+
