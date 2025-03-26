@@ -8,6 +8,7 @@ from mental_age import mental_age_bp
 from eye import eye_bp  
 from book import book_bp  
 from video import video_bp
+from voice import voice_bp
 
 # Initialize Flask app and configurations
 app = Flask(__name__)
@@ -17,7 +18,8 @@ CORS(app)
 app.register_blueprint(mental_age_bp)
 app.register_blueprint(eye_bp)
 app.register_blueprint(book_bp) 
-app.register_blueprint(video_bp)  
+app.register_blueprint(video_bp)
+app.register_blueprint(voice_bp)
 
 df = pd.read_csv("model/drugs.csv")
 
@@ -85,7 +87,12 @@ def search():
     else:
         # If no match is found, return an error response
         return jsonify({"error": "Drug not found"}), 404
+    
+# @app.route('/bookmarks', methods=['GET'])
+# def bookmarks():
+#     return jsonify({"message": "Bookmarks feature not implemented"}), 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True, port=5000, use_reloader=False)
     # app.run(host='0.0.0.0', debug=True, port=5000)
+
