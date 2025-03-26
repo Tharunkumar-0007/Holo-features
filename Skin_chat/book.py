@@ -9,7 +9,7 @@ book_bp = Blueprint('book_bp', __name__)
 classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
 
 # Google Books API URL (replace with your own)
-API_URL = "https://www.googleapis.com/books/v1/volumes?q=subject:{}&key=AIzaSyAsaqtSVvfAa8iXCdUf2S7jHS837IK5ibQ"
+API_URL = "https://www.googleapis.com/books/v1/volumes?q=subject:{}&key=AIzaSyBqHtzaX4jOwYw4lEg4r888i86jvxj_05I"
 
 def is_medical_query(query):
     # Specify candidate labels for zero-shot classification
@@ -41,3 +41,5 @@ def suggest():
             return jsonify(suggested_books=[], message="No books found!")
     else:
         return jsonify(suggested_books=[], message="Not medical-related.")
+
+

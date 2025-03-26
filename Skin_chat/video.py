@@ -5,20 +5,10 @@ from transformers import pipeline
 video_bp = Blueprint("video", __name__)
 
 # YouTube Data API Key (replace with your own)
-YOUTUBE_API_KEY = 'AIzaSyC8YRIfYGriWYo6DUoRyACvfiHyRgmUsIo'
+YOUTUBE_API_KEY = 'AIzaSyAsaqtSVvfAa8iXCdUf2S7jHS837IK5ibQ'
 
 # Load the Hugging Face pipeline for zero-shot classification
 classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
-
-# # Default video links
-# default_videos = [
-#     "https://www.youtube.com/watch?v=kxc22Fjd1NQ",
-#     "https://www.youtube.com/watch?v=hDkY3pZsPGo",
-#     "https://www.youtube.com/watch?v=86oF359FHUY",
-#     "https://www.youtube.com/watch?v=lHVE4MbfZ6I",
-#     "https://www.youtube.com/watch?v=dmbCWXHC3lM",
-#     "https://www.youtube.com/watch?v=5V3GPFUzCCk",
-# ]
 
 def is_medical_query(query):
     """Check if the query is related to medical topics."""
@@ -32,11 +22,24 @@ def youtube_search(query):
     request = youtube.search().list(q=query, part='snippet', type='video', maxResults=9)
     response = request.execute()
     
-    return [f"https://www.youtube.com/watch?v={item['id']['videoId']}" for item in response['items']]
+    videos = []
+    for item in response['items']:
+        video_data = {
+            "title": item['snippet']['title'],
+            "channel": item['snippet']['channelTitle'],
+            "url": f"https://www.youtube.com/watch?v={item['id']['videoId']}"
+        }
+        videos.append(video_data)
+
+    return videos
 
 @video_bp.route('/video_search', methods=['POST'])
 def search_videos():
-    query = request.form.get('query', '').strip()
+    data = request.get_json()
+    if not data or 'query' not in data:
+        return jsonify({'error': 'Empty or invalid JSON request'}), 400
+
+    query = data['query'].strip()
     if not query:
         return jsonify({'error': 'Empty query'}), 400
 
@@ -45,7 +48,3 @@ def search_videos():
         return jsonify({'videos': videos})
     else:
         return jsonify({'error': 'Not a medical-related query'}), 400
-
-# @video_bp.route('/videos', methods=['GET'])
-# def show_videos():
-#     return render_template('videos.html', videos=default_videos)

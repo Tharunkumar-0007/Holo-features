@@ -18,59 +18,59 @@ document.addEventListener('DOMContentLoaded', function () {
     let inactivityTimeout;
   
     // Function to handle sending message
-    async function sendMessage() {
-        const messageText = messageInput.value.trim();
-  
-        if (messageText) {
-            // Clear the input field immediately
-            messageInput.value = '';
-  
-            // Create the user's message bubble
-            const userMessage = document.createElement('div');
-            userMessage.classList.add('message', 'user-message');
-            userMessage.innerText = messageText;
-            messagesContainer.appendChild(userMessage);
+async function sendMessage() {
+    const messageText = messageInput.value.trim();
 
-            const typingMessage = document.createElement('div');
-            typingMessage.classList.add('message', 'chatbot-message', 'typing-message');
-            typingMessage.innerText = 'Medical assistant is typing...';
-            messagesContainer.appendChild(typingMessage);
-    
-            // Scroll to the bottom of the messages container
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-  
-            try {
-                // Make an API call to the Flask backend
-                const chatUrl = Url.Base_url + Url.chat;
-                const response = await fetch(chatUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: new URLSearchParams({
-                        query: messageText
-                    })
-                });
-  
-                const data = await response.json();
-                messagesContainer.removeChild(typingMessage);
-                // Create the chatbot's message bubble with the API response
-                const chatbotMessage = document.createElement('div');
-                chatbotMessage.classList.add('message', 'chatbot-message');
-                chatbotMessage.innerText = data.response; 
-                messagesContainer.appendChild(chatbotMessage);
-            } catch (error) {
-                messagesContainer.removeChild(typingMessage);
-                const errorMessage = document.createElement('div');
-                errorMessage.classList.add('message', 'error-message');
-                errorMessage.innerText = 'Error: Unable to connect to the server.';
-                messagesContainer.appendChild(errorMessage);
-            }
-  
-            // Scroll to the bottom of the messages container
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    if (messageText) {
+        // Clear the input field immediately
+        messageInput.value = '';
+
+        // Create the user's message bubble
+        const userMessage = document.createElement('div');
+        userMessage.classList.add('message', 'user-message');
+        userMessage.innerText = messageText;
+        messagesContainer.appendChild(userMessage);
+
+        const typingMessage = document.createElement('div');
+        typingMessage.classList.add('message', 'chatbot-message', 'typing-message');
+        typingMessage.innerText = 'Medical assistant is typing...';
+        messagesContainer.appendChild(typingMessage);
+
+        // Scroll to the bottom of the messages container
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        try {
+            // Make an API call to the Flask backend
+            const chatUrl = Url.Base_url + Url.chat;
+            const response = await fetch(chatUrl, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ query: messageText }) 
+            });
+
+            const data = await response.json();
+            messagesContainer.removeChild(typingMessage);
+            // Create the chatbot's message bubble with the API response
+            const chatbotMessage = document.createElement('div');
+            chatbotMessage.classList.add('message', 'chatbot-message');
+            chatbotMessage.innerText = data.response;
+            messagesContainer.appendChild(chatbotMessage);
+        } catch (error) {
+            messagesContainer.removeChild(typingMessage);
+            const errorMessage = document.createElement('div');
+            errorMessage.classList.add('message', 'error-message');
+            errorMessage.innerText = 'Error: Unable to connect to the server.';
+            messagesContainer.appendChild(errorMessage);
         }
+
+        // Scroll to the bottom of the messages container
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
+}
+
   
     // Event listener for Send button click
     sendIcon.addEventListener('click', function () {

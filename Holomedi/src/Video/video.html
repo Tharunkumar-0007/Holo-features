@@ -12,7 +12,7 @@
             <h1>Medical Query</h1>
             <form id="search-form">
                 <input class="search-bar" type="text" id="query" placeholder="Search medical videos..." required>
-                <button class= "search-btn" type="submit">Search</button>
+                <button class="search-btn" type="submit">Search</button>
             </form>
         </div>
     </header>
@@ -25,43 +25,45 @@
 
     <script>
         document.getElementById('search-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const query = document.getElementById('query').value;
-        const resultsContainer = document.getElementById('video-results');
-        const errorMessage = document.getElementById('error-message');
+            event.preventDefault();
+            const query = document.getElementById('query').value.trim();
+            const resultsContainer = document.getElementById('video-results');
+            const errorMessage = document.getElementById('error-message');
 
-        resultsContainer.innerHTML = "";
-        errorMessage.textContent = "";
+            resultsContainer.innerHTML = "";
+            errorMessage.textContent = "";
 
-        fetch('http://127.0.0.1:5000/video_search', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams({ query: query })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                errorMessage.textContent = data.error;
-            } else {
-                data.videos.forEach(videoUrl => {
-                    const videoCard = document.createElement('div');
-                    videoCard.classList.add('video-card');
+            fetch('http://192.168.0.75:5000/video_search', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query: query })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    errorMessage.textContent = data.error;
+                } else {
+                    data.videos.forEach(video => {
+                        const videoCard = document.createElement('div');
+                        videoCard.classList.add('video-card');
 
-                    videoCard.innerHTML = `
-                        <a href="${videoUrl}" target="_blank">
-                            <img src="https://img.youtube.com/vi/${videoUrl.split('v=')[1]}/0.jpg" alt="Video Thumbnail" class="video-thumbnail">
-                            <p class="video-title">${videoUrl}</p>
-                        </a>
-                    `;
-
-                    resultsContainer.appendChild(videoCard);
-                });
-            }
-        })
-        .catch(error => console.error('Error:', error));
-    });
+                        videoCard.innerHTML = `
+                            <a href="${video.url}" target="_blank">
+                                <img src="https://img.youtube.com/vi/${new URL(video.url).searchParams.get('v')}/0.jpg" alt="Video Thumbnail" class="video-thumbnail">
+                                <p class="video-title">${video.title}</p>
+                                <p class="video-channel">${video.channel}</p>
+                            </a>
+                        `;
+                        
+                        resultsContainer.appendChild(videoCard);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                errorMessage.textContent = "An error occurred while fetching videos.";
+            });
+        });
     </script>
 </body>
 </html>
-
-

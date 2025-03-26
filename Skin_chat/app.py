@@ -16,7 +16,7 @@ CORS(app)
 # Register the blueprints
 app.register_blueprint(mental_age_bp)
 app.register_blueprint(eye_bp)
-app.register_blueprint(book_bp)  
+app.register_blueprint(book_bp) 
 app.register_blueprint(video_bp)  
 
 df = pd.read_csv("model/drugs.csv")
@@ -27,15 +27,19 @@ def index():
 
 @app.route('/ask', methods=['POST'])
 def ask():
-    user_input = request.form['query']
-    if not user_input.strip() or not re.search(r'[a-zA-Z0-9]', user_input):
+    data = request.get_json()  # Get JSON data from the request
+    if not data or 'query' not in data:
+        return jsonify({"error": "No query provided"}), 400
+
+    user_input = data['query'].strip()
+    if not user_input or not re.search(r'[a-zA-Z0-9]', user_input):
         return jsonify({"response": "Nothing matched. Please enter a valid query."})
 
     response = ask_question(user_input)
     return jsonify({"response": response})
 
-ALLOWED_EXTENSIONS = {'.png', '.jpg', '.jpeg', '.jfif'}
 
+ALLOWED_EXTENSIONS = {'.png', '.jpg', '.jpeg', '.jfif'}
 def allowed_file(filename):
     """Check if the file has an allowed extension."""
     return any(filename.lower().endswith(ext) for ext in ALLOWED_EXTENSIONS)
@@ -84,3 +88,4 @@ def search():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True, port=5000, use_reloader=False)
+    # app.run(host='0.0.0.0', debug=True, port=5000)

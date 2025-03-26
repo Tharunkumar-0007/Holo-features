@@ -17,9 +17,8 @@ confidence_threshold = 0.7  # Set a threshold for valid predictions
 def is_medical_image(file):
     """
     Rule-based function to check if the image is likely a medical eye image.
-    This is a simple heuristic and can be improved further.
     """
-    # Read the image file from memory
+    file.seek(0)  # Reset file pointer before reading
     file_bytes = np.frombuffer(file.read(), np.uint8)
     img = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
     
@@ -33,49 +32,49 @@ def is_medical_image(file):
     mean_intensity = np.mean(gray)
     std_intensity = np.std(gray)
 
-    # Rule: Medical eye images often have specific intensity and texture
-    # Adjust these thresholds based on your dataset
+    # Rule-based thresholding
     if mean_intensity < 50 or mean_intensity > 200:
-        return False  # Unlikely to be a medical eye image
+        return False
     if std_intensity < 10 or std_intensity > 100:
-        return False  # Unlikely to be a medical eye image
+        return False
 
-    return True  # Likely a medical eye image
+    return True  # Likely an eye image
 
 def predict_image(file):
     """
     Predict the eye disease if the image is valid.
     """
-    # Reset the file pointer to the beginning
-    file.seek(0)
-    
-    # Load the image from memory
+    file.seek(0)  # Reset file pointer before reading
     img = image.load_img(io.BytesIO(file.read()), target_size=(150, 150))
     img_array = image.img_to_array(img)
     img_array = np.expand_dims(img_array, axis=0)
     img_array /= 255.0
+
     prediction = model.predict(img_array)
-    confidence = np.max(prediction)  # Get the highest confidence score
+    confidence = np.max(prediction)
     predicted_class = class_names[np.argmax(prediction)]
-    
-    # Check if the confidence is below the threshold
+
     if confidence < confidence_threshold:
         return "Not a valid eye image", confidence
     return predicted_class, confidence
 
-@eye_bp.route('/eye', methods=['GET', 'POST'])
+@eye_bp.route('/eye', methods=['POST'])
 def index():
     if 'file' not in request.files:
         return jsonify({'message': 'No file part'}), 400
+
     file = request.files['file']
     if file.filename == '':
         return jsonify({'message': 'No selected file'}), 400
+
     if file:
         if not is_medical_image(file):
-            return jsonify({'message': 'Not a valid medical eye image'}), 400
+            return jsonify({'message': 'Give a valid eye image'}), 400
 
         prediction, confidence = predict_image(file)
         confidence_percentage = round(confidence * 100, 2)
+
         return jsonify({'prediction': prediction, 'confidence': confidence_percentage})
 
     return jsonify({'message': 'File processing error'}), 500
+
