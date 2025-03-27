@@ -20,7 +20,7 @@ def callback(indata, frames, time, status):
         print(status, flush=True)
     audio_queue.put(bytes(indata))
 
-@voice_bp.route("/start", methods=["GET"])
+@voice_bp.route("/voice", methods=["GET"])
 def start_recognition():
     with sd.RawInputStream(samplerate=16000, blocksize=8000, dtype="int16",
                            channels=1, callback=callback):

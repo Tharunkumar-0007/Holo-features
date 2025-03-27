@@ -134,7 +134,11 @@ def search():
 
     except Exception as e:
         logger.error(f"Search error: {str(e)}")
-        return jsonify({"error": f"Search failed: {str(e)}"}), 500
+        return jsonify({"error": f"Search failed: {str(e)}"}), 
+
+@app.route('/bookmarks', methods=['GET'])
+def bookmarks():
+    return jsonify({"message": "Bookmarks feature not implemented"}), 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True, use_reloader=False)
